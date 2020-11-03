@@ -8,9 +8,24 @@
 </style>
 
     <main>
-        <div class="container mx-auto py-12 flex justify-between items-center">
+        <div class="container mx-auto py-12 flex flex-col justify-between items-center">
             {% include 'partials/search.html.twig' %}
+            <section class="max-w-screen-lg w-full m-auto py-32">
+                <div class="bg-gray-300 h-64 mb-8 rounded-xl">
+                    <img class="block h-full rounded-xl" src="" alt="Nom de l'offre">
+                </div>
+                <h1 class="text-2xl font-semibold mb-2">Nom de l'offre</h1>
+                <div class="flex items-center justify-between mb-16">
+                    <p><span class="font-semibold">Catégorie : </span>Loisirs</p>
+                    <p><span class="font-semibold">Prix : </span>15€</p>
+                </div>
+                <div class="mb-16">
+                    <p class="font-semibold mb-2">Description</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <p>Annonce postée par <span class="font-semibold">Juliette</span> le <span class="font-semibold">03/11/2020</span>.</p>
+            </section>
         </div>
     </main>
-    
+
 {% endblock %}
