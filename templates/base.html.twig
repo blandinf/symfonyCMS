@@ -2,11 +2,15 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        {% endblock %}
     </head>
     <body>
+        {% include 'partials/header.html.twig' %}
         {% block body %}{% endblock %}
+        {% include 'partials/footer.html.twig' %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

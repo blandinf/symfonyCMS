@@ -103,4 +103,5 @@
       <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
     </include_path>
   </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
 </project>
