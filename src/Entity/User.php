@@ -3,14 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -20,55 +19,34 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $Username;
+    private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=10, unique=true)
      */
     private $phone;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="json")
      */
-    private $is_admin;
+    private $roles = [];
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $password;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="author")
-     */
-    private $offers;
-
-    public function __construct()
-    {
-        $this->offers = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->Username;
-    }
-
-    public function setUsername(string $Username): self
-    {
-        $this->Username = $Username;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -79,6 +57,18 @@ class User
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
@@ -95,21 +85,41 @@ class User
         return $this;
     }
 
-    public function getIsAdmin(): ?bool
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->is_admin;
+        return (string) $this->email;
     }
 
-    public function setIsAdmin(bool $is_admin): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->is_admin = $is_admin;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->password;
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -120,15 +130,54 @@ class User
     }
 
     /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+}
+
+    private $offers;
+    public function __construct()
+    {
+        $this->offers = new ArrayCollection();
+    }
+    private $is_admin;
+     */
+     * @ORM\Column(type="boolean")
+    /**
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+    public function getIsAdmin(): ?bool
+    {
+        return $this->is_admin;
+    }
+    public function setIsAdmin(bool $is_admin): self
+    {
+        $this->is_admin = $is_admin;
+
+        return $this;
+    }
+    /**
      * @return Collection|Offer[]
      */
-    public function getOffers(): Collection
     {
+    public function getOffers(): Collection
         return $this->offers;
     }
 
-    public function addOffer(Offer $offer): self
     {
+    public function addOffer(Offer $offer): self
         if (!$this->offers->contains($offer)) {
             $this->offers[] = $offer;
             $offer->setAuthor($this);
@@ -146,6 +195,5 @@ class User
             }
         }
 
-        return $this;
     }
-}
+        return $this;
