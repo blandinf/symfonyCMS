@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -33,6 +35,11 @@ class User implements UserInterface
      */
     private $phone;
 
+//    /**
+//     * @ORM\Column(type="boolean")
+//     */
+//    private $is_admin;
+
     /**
      * @ORM\Column(type="json")
      */
@@ -43,6 +50,16 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+//    /**
+//     * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="author")
+//     */
+//    private $offers;
+
+//    public function __construct()
+//    {
+//        $this->offers = new ArrayCollection();
+//    }
 
     public function getId(): ?int
     {
@@ -84,6 +101,18 @@ class User implements UserInterface
 
         return $this;
     }
+
+//    public function removeOffer(Offer $offer): self
+//    {
+//        if ($this->offers->removeElement($offer)) {
+//            // set the owning side to null (unless already changed)
+//            if ($offer->getAuthor() === $this) {
+//                $offer->setAuthor(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
     /**
      * A visual identifier that represents this user.
@@ -146,54 +175,3 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 }
-
-    private $offers;
-    public function __construct()
-    {
-        $this->offers = new ArrayCollection();
-    }
-    private $is_admin;
-     */
-     * @ORM\Column(type="boolean")
-    /**
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-    public function getIsAdmin(): ?bool
-    {
-        return $this->is_admin;
-    }
-    public function setIsAdmin(bool $is_admin): self
-    {
-        $this->is_admin = $is_admin;
-
-        return $this;
-    }
-    /**
-     * @return Collection|Offer[]
-     */
-    {
-    public function getOffers(): Collection
-        return $this->offers;
-    }
-
-    {
-    public function addOffer(Offer $offer): self
-        if (!$this->offers->contains($offer)) {
-            $this->offers[] = $offer;
-            $offer->setAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOffer(Offer $offer): self
-    {
-        if ($this->offers->removeElement($offer)) {
-            // set the owning side to null (unless already changed)
-            if ($offer->getAuthor() === $this) {
-                $offer->setAuthor(null);
-            }
-        }
-
-    }
-        return $this;

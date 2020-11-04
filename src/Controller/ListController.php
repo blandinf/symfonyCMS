@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ListController extends AbstractController
 {
     /**
-     * @Route("/list", name="list")
+     * @Route("/", name="list")
      */
     public function index(): Response
     {
