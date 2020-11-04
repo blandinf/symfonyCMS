@@ -27,11 +27,11 @@ class Category
     /**
      * @ORM\ManyToMany(targetEntity=Offer::class, mappedBy="category")
      */
-    private $offer;
+    private $offers;
 
     public function __construct()
     {
-        $this->offer = new ArrayCollection();
+        $this->offers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,15 +54,15 @@ class Category
     /**
      * @return Collection|Offer[]
      */
-    public function getOffer(): Collection
+    public function getOffers(): Collection
     {
-        return $this->offer;
+        return $this->offers;
     }
 
     public function addOffer(Offer $offer): self
     {
-        if (!$this->offer->contains($offer)) {
-            $this->offer[] = $offer;
+        if (!$this->offers->contains($offer)) {
+            $this->offers[] = $offer;
             $offer->addCategory($this);
         }
 
@@ -71,7 +71,7 @@ class Category
 
     public function removeOffer(Offer $offer): self
     {
-        if ($this->offer->removeElement($offer)) {
+        if ($this->offers->removeElement($offer)) {
             $offer->removeCategory($this);
         }
 

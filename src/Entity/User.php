@@ -35,11 +35,6 @@ class User implements UserInterface
      */
     private $phone;
 
-//    /**
-//     * @ORM\Column(type="boolean")
-//     */
-//    private $is_admin;
-
     /**
      * @ORM\Column(type="json")
      */
@@ -50,6 +45,16 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="author")
+     */
+    private $offers;
+
+    public function __construct()
+    {
+        $this->offers = new ArrayCollection();
+    }
 
 //    /**
 //     * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="author")
@@ -173,5 +178,35 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Offer[]
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offer $offer): self
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers[] = $offer;
+            $offer->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffer(Offer $offer): self
+    {
+        if ($this->offers->removeElement($offer)) {
+            // set the owning side to null (unless already changed)
+            if ($offer->getAuthor() === $this) {
+                $offer->setAuthor(null);
+            }
+        }
+
+        return $this;
     }
 }
