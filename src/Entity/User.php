@@ -3,14 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -20,55 +21,49 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $Username;
+    private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=10, unique=true)
      */
     private $phone;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $is_admin;
+//    /**
+//     * @ORM\Column(type="boolean")
+//     */
+//    private $is_admin;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $password;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="author")
-     */
-    private $offers;
+//    /**
+//     * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="author")
+//     */
+//    private $offers;
 
-    public function __construct()
-    {
-        $this->offers = new ArrayCollection();
-    }
+//    public function __construct()
+//    {
+//        $this->offers = new ArrayCollection();
+//    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->Username;
-    }
-
-    public function setUsername(string $Username): self
-    {
-        $this->Username = $Username;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -79,6 +74,18 @@ class User
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
@@ -95,21 +102,53 @@ class User
         return $this;
     }
 
-    public function getIsAdmin(): ?bool
+//    public function removeOffer(Offer $offer): self
+//    {
+//        if ($this->offers->removeElement($offer)) {
+//            // set the owning side to null (unless already changed)
+//            if ($offer->getAuthor() === $this) {
+//                $offer->setAuthor(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->is_admin;
+        return (string) $this->email;
     }
 
-    public function setIsAdmin(bool $is_admin): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->is_admin = $is_admin;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->password;
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -120,32 +159,19 @@ class User
     }
 
     /**
-     * @return Collection|Offer[]
+     * @see UserInterface
      */
-    public function getOffers(): Collection
+    public function getSalt()
     {
-        return $this->offers;
+        // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
-    public function addOffer(Offer $offer): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        if (!$this->offers->contains($offer)) {
-            $this->offers[] = $offer;
-            $offer->setAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOffer(Offer $offer): self
-    {
-        if ($this->offers->removeElement($offer)) {
-            // set the owning side to null (unless already changed)
-            if ($offer->getAuthor() === $this) {
-                $offer->setAuthor(null);
-            }
-        }
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
