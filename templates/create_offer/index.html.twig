@@ -1,47 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Déposer votre annonce{% endblock %}
+{% block title %}LeBonCoing | Déposer une annonce{% endblock %}
 
 {% block body %}
 <style>
     form { width: 500px; }
 </style>
 
-    <main>
-        <div class="container mx-auto py-12 flex flex-col justify-between items-center h-full">
-            <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 my-8">Déposer votre annonce</h1>
-            <form action="">
-                <label>
-                    <input type="text" placeholder="Titre de l'annonce" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-                </label>
-                <label>
-                    <input type="text" placeholder="Catégorie" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-                </label>
-                <label>
-                    <input type="text" placeholder="Prix" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-                </label>
-                <label>
-                    <textarea name="" id="" maxlength="8000" cols="20" rows="8" placeholder="Description" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"></textarea>
-                </label>
-                <div class="mb-8 mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                    <div class="text-center">
-                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <p class="mt-1 text-sm text-gray-600">
-                            <button class="font-medium text-blue-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
-                                Upload a file
-                            </button>
-                            or drag and drop
-                        </p>
-                        <p class="mt-1 text-xs text-gray-500">
-                            PNG, JPG, GIF up to 10MB
-                        </p>
-                    </div>
+<main class="container m-auto py-24">
+    <div class="flex flex-col justify-between items-center h-full">
+        <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 my-8">Déposer votre annonce</h1>
+        <form action="">
+            <label>
+                <input type="text" placeholder="Titre de l'annonce" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5">
+            </label>
+            <label>
+                <input type="text" placeholder="Catégorie" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5">
+            </label>
+            <label>
+                <input type="text" placeholder="Prix" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5">
+            </label>
+            <label>
+                <textarea name="" id="" maxlength="8000" cols="20" rows="8" placeholder="Description" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5"></textarea>
+            </label>
+            <div class="mb-8 mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div class="text-center">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <p class="mt-1 text-sm text-gray-600">
+                        <button class="font-medium text-orange-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
+                            Upload a file
+                        </button>
+                        or drag and drop
+                    </p>
+                    <p class="mt-1 text-xs text-gray-500">
+                        PNG, JPG, GIF up to 10MB
+                    </p>
                 </div>
-                <p class="text-xs mb-8">Votre annonce sera étudiée et validée sous 24h avant d'être publiée.</p>
-                <button class="mb-8 inline-block bg-blue-600 font-medium text-white border w-full tracking-wide rounded-md py-2 px-4" type="submit">Créer l'annonce</button>
-            </form>
-        </div>
-    </main>
+            </div>
+            <p class="text-xs mb-8">Votre annonce sera étudiée et validée sous 24h avant d'être publiée.</p>
+            <button class="mb-8 inline-block bg-orange-300 font-medium w-full tracking-wide rounded-md py-2 px-4" type="submit">Créer l'annonce</button>
+        </form>
+    </div>
+</main>
 {% endblock %}

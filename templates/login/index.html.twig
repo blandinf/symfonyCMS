@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Se connecter{% endblock %}
+{% block title %}LeBonCoing | Se connecter{% endblock %}
 
 {% block body %}
 <style>
     form { width: 500px; }
 </style>
 
-    <main>
-        <div class="container mx-auto py-12 flex flex-col justify-between items-center h-full">
-            <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 my-8">Se connecter</h1>
-            <form action="">
-                <label>
-                    <input type="text" placeholder="Adresse email" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-                </label>
-                <label>
-                    <input type="text" placeholder="Mot de passe" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5">
-                </label>
-                <button class="mb-8 inline-block bg-blue-600 font-medium text-white border w-full tracking-wide rounded-md py-2 px-4" type="submit">Se connecter</button>
-                <p class="text-center">Envie de nous rejoindre ? <a class="text-blue-600" href="/register">Créer un compte</a></p>
-            </form>
-        </div>
-    </main>
+<main class="container m-auto py-24">
+    <div class="flex flex-col justify-between items-center h-full">
+        <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 my-8">Se connecter</h1>
+        <form action="">
+            <label>
+                <input type="text" placeholder="Adresse email" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5">
+            </label>
+            <label>
+                <input type="text" placeholder="Mot de passe" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5">
+            </label>
+            <button class="mb-8 inline-block bg-orange-300 font-medium w-full tracking-wide rounded-md py-2 px-4" type="submit">Se connecter</button>
+            <p class="text-center">Envie de nous rejoindre ? <a class="text-orange-600" href="/register">Créer un compte</a></p>
+        </form>
+    </div>
+</main>
 {% endblock %}

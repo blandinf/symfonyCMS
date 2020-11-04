@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
-        {% block stylesheets %}
-            <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        {% endblock %}
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <style>
+            main { min-height: calc(100vh - 120px); }
+        </style>
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
         {% include 'partials/header.html.twig' %}
