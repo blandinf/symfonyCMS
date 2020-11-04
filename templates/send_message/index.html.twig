@@ -4,18 +4,20 @@
 
 {% block body %}
 <style>
-    form { width: 500px; }
+
 </style>
 
 <main class="container m-auto py-24">
-        <div class="flex flex-col justify-between items-center h-full">
-            <h1 class="text-center text-xl font-bold text-gray-900 my-8">Envoyer un message à <span class="font-semibold">Juliette</span></h1>
-            <form action="">
-                <label>
-                    <textarea name="" id="" maxlength="8000" cols="20" rows="8" placeholder="Bonjour, cet article est-il toujours disponible ?" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5"></textarea>
-                </label>
-                <button class="mb-8 inline-block bg-orange-300 font-medium w-full tracking-wide rounded-md py-2 px-4" type="submit">Envoyer</button>
-            </form>
-        </div>
-    </main>
+    {% include 'partials/search.html.twig' %}
+
+    <div class="flex flex-col justify-between items-center h-full">
+        <h1 class="text-center text-xl font-bold text-gray-900 my-8">Envoyer un message à <span class="font-semibold">Juliette</span></h1>
+        <form action="">
+            <label>
+                <textarea name="" id="" maxlength="8000" cols="20" rows="8" placeholder="Bonjour, cet article est-il toujours disponible ?" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5"></textarea>
+            </label>
+            <button class="mb-8 inline-block bg-orange-300 font-medium w-full tracking-wide rounded-md py-2 px-4" type="submit">Envoyer</button>
+        </form>
+    </div>
+</main>
 {% endblock %}

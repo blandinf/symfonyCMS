@@ -4,10 +4,12 @@
 
 {% block body %}
 <style>
-    .line { height: 1px; }
+
 </style>
 
 <main class="container m-auto py-24">
+    {% include 'partials/search.html.twig' %}
+
     <section class="flex flex-col justify-between items-center max-w-screen-lg w-full m-auto">
         <div class="bg-gray-300 h-64 w-full mb-8 rounded-xl">
             <img class="block h-full rounded-xl" src="" alt="Nom de l'offre">
