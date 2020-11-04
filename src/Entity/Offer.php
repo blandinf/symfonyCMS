@@ -22,38 +22,38 @@ class Offer
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Title;
+    private $title;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $Description;
+    private $description;
 
     /**
      * @ORM\Column(type="float")
      */
-    private $Price;
+    private $price;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $Date;
+    private $date;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $image_name;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=category::class, inversedBy="offer")
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="offers")
      */
     private $category;
 
     /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"})
+     */
+    private $image;
+
+    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="offers")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
+
 
     public function __construct()
     {
@@ -67,73 +67,61 @@ class Offer
 
     public function getTitle(): ?string
     {
-        return $this->Title;
+        return $this->title;
     }
 
-    public function setTitle(string $Title): self
+    public function setTitle(string $title): self
     {
-        $this->Title = $Title;
+        $this->title = $title;
 
         return $this;
     }
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
-    public function setDescription(string $Description): self
+    public function setDescription(string $description): self
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }
 
     public function getPrice(): ?float
     {
-        return $this->Price;
+        return $this->price;
     }
 
-    public function setPrice(float $Price): self
+    public function setPrice(float $price): self
     {
-        $this->Price = $Price;
+        $this->price = $price;
 
         return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
     {
-        return $this->Date;
+        return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $Date): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->Date = $Date;
-
-        return $this;
-    }
-
-    public function getImageName(): ?string
-    {
-        return $this->image_name;
-    }
-
-    public function setImageName(?string $image_name): self
-    {
-        $this->image_name = $image_name;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * @return Collection|category[]
+     * @return Collection|Category[]
      */
     public function getCategory(): Collection
     {
         return $this->category;
     }
 
-    public function addCategory(category $category): self
+    public function addCategory(Category $category): self
     {
         if (!$this->category->contains($category)) {
             $this->category[] = $category;
@@ -142,9 +130,21 @@ class Offer
         return $this;
     }
 
-    public function removeCategory(category $category): self
+    public function removeCategory(Category $category): self
     {
         $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
