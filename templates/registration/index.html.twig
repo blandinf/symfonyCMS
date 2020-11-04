@@ -2,7 +2,6 @@
 
 {% block body %}
     {% trans_default_domain 'register' %}
-    {% trans %}test{% endtrans %}
     <div class="container">
         <div class="row">
             <div class="col-md-10 ml-md-auto">
@@ -40,7 +39,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4" style="margin-top:5px;">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i>Register
+                                    <i class="fa fa-btn fa-user"></i>{% trans %}Register{% endtrans %}
                                 </button>
 
                             </div>
