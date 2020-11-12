@@ -18,13 +18,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
     <ul class="nav navbar-nav navbar-right">
         {% if app.user %}
-            <li><a class="nav-link" href="{{ path('list') }}">View List</a></li>
+            {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                <li><a class="nav-link" href="{{ path('category_new') }}">Post a category</a></li>
+            {% endif %}
+            <li><a class="nav-link" href="{{ path('offer_new') }}">Post an offer</a></li>
             <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
         {% else %}
             <li><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
-            <li>
-                <a class="nav-link" href="{{ path('registration') }}">Register</a>
-            </li>
+            <li><a class="nav-link" href="{{ path('registration') }}">Register</a></li>
         {% endif %}
     </ul>
 </nav>
