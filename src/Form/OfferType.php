@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class OfferType extends AbstractType
 {
@@ -29,7 +30,17 @@ class OfferType extends AbstractType
                 'label' => false,
                 'multiple' => false,
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                            'image/gif'
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid attachment',
+                    ])
+                ],
             ])
         ;
     }
