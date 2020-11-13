@@ -27,10 +27,11 @@ class OfferController extends AbstractController
     public function index(OfferRepository $offerRepository): Response
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        $offers = $offerRepository->findAllExceptMine($user);
+        $offers = $offerRepository->findAll();
 
         return $this->render('offer/index.html.twig', [
-            'offers' => $offers
+            'offers' => $offers,
+            'user' => $user
         ]);
     }
 
@@ -45,7 +46,8 @@ class OfferController extends AbstractController
         $offers = $offerRepository->findMyOffers($user);
 
         return $this->render('offer/index.html.twig', [
-            'offers' => $offers
+            'offers' => $offers,
+            'user' => $user
         ]);
     }
 
