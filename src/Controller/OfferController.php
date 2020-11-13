@@ -26,7 +26,23 @@ class OfferController extends AbstractController
      */
     public function index(OfferRepository $offerRepository): Response
     {
-        $offers = $offerRepository->findAll();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $offers = $offerRepository->findAllExceptMine($user);
+
+        return $this->render('offer/index.html.twig', [
+            'offers' => $offers
+        ]);
+    }
+
+    /**
+     * @Route("/offers", name="my_offers", methods={"GET"})
+     * @param OfferRepository $offerRepository
+     * @return Response
+     */
+    public function indexMyOffers(OfferRepository $offerRepository): Response
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $offers = $offerRepository->findMyOffers($user);
 
         return $this->render('offer/index.html.twig', [
             'offers' => $offers

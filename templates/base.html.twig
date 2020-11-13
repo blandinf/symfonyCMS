@@ -21,6 +21,7 @@
             {% if app.user.roles[0] == 'ROLE_ADMIN' %}
                 <li><a class="nav-link" href="{{ path('category_new') }}">Post a category</a></li>
             {% endif %}
+            <li><a class="nav-link" href="{{ path('my_offers') }}">My offers</a></li>
             <li><a class="nav-link" href="{{ path('offer_new') }}">Post an offer</a></li>
             <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
         {% else %}
