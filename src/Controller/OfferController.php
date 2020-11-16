@@ -97,7 +97,7 @@ class OfferController extends AbstractController
 
             $mailer->send($message);
             $this->addFlash('message', 'The message has been sent');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('offers');
         }
 
         return $this->render('offer/show.html.twig', [
