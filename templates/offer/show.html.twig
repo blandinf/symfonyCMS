@@ -24,11 +24,13 @@
                 <td>{{ offer.date ? offer.date|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <p>{{ offer.image.name }}</p>
-            <img
-                alt="{{ offer.image.name }}"
+            <img alt="{{ offer.image.name }}"
                 src="{{ asset('uploads/brochures/' ~ offer.image.name) }}" />
         </tbody>
     </table>
+
+    <h3>Send email to seller</h3>
+    {{ form(contactForm) }}
 
     <a href="{{ path('offers') }}">back to list</a>
 
