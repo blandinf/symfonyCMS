@@ -11,27 +11,19 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder,  array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
-                'translation_domain' => 'register'
-            ])
-            ->add('email', EmailType::class, [
-                'translation_domain' => 'register'
-            ])
-            ->add('phone', TelType::class, [
-                'translation_domain' => 'register'
-            ])
+            ->add('name', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('phone', TelType::class)
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Password'],
-                'second_options' => ['label' => 'Confirm Password'],
-                'translation_domain' => 'register'
+                'second_options' => ['label' => 'Confirm Password']
             ])
         ;
     }
