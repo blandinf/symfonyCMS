@@ -16,7 +16,7 @@
                 <p class="text-center">{{ offer.description }}</p>
             </div>
             <span class="line block bg-gray-400 w-full mb-10"></span>
-            <p class="mr-auto">Annonce postée par <span class="font-semibold">{{ app.user.name }}</span> le <span class="font-semibold">{{ offer.date ? offer.date|date('Y-m-d H:i:s') : '' }}</span>.</p>
+            <p class="mr-auto">Annonce postée le <span class="font-semibold">{{ offer.date ? offer.date|date('Y-m-d H:i:s') : '' }}</span>.</p>
             <div class="w-full mt-12">
                 <h3 class="font-medium mb-2">Contacter le vendeur</h3>
                 {{ form(contactForm) }}
