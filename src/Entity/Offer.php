@@ -10,7 +10,17 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource
+ * @ApiResource(
+ *     collectionOperations={
+ *         "get",
+ *         "post",
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put",
+ *         "delete"
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=OfferRepository::class)
  */
 class Offer
