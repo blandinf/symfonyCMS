@@ -1,4 +1,4 @@
 App\Entity\Image:
   image_{1..10}:
-    path: '/public/img/'
-    name: image_<current()>
+    path: ''
+    name: image_<current()>.png
