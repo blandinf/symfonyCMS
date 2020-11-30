@@ -4,7 +4,7 @@
         <nav>
             {% if app.user %}
                 {% if app.user.roles[0] == 'ROLE_ADMIN' %}
-                    <a href="{{ path('category_new') }}">Post a category</a>
+                    <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded" href="{{ path('category_new') }}">Créer une catégorie</a>
                 {% endif %}
                 <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded" href="{{ path('offer_new') }}">Déposer une annonce</a>
                 <a class="ml-8" href="{{ path('app_logout') }}">Se déconnecter</a>
