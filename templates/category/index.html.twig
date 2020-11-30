@@ -4,7 +4,6 @@
 
 {% block body %}
     <div class="container m-auto py-24">
-        <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 my-8">Category index</h1>
         <section class="flex flex-wrap justify-between mt-10">
             {% for category in categories %}
                 <div class="offer-div w-1/3 shadow-xl rounded-md relative transform duration-300 hover:scale-105">
@@ -18,7 +17,7 @@
             {% else %}
                 <p>Aucune catégorie trouvée</p>
             {% endfor %}
-            <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded mt-10" href="{{ path('category_new') }}">Create new</a>
         </section>
+        <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded mt-10" href="{{ path('category_new') }}">Créer une catégorie</a>
     </div>
 {% endblock %}

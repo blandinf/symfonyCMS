@@ -9,7 +9,7 @@
             <p><span class="font-semibold">Id : </span>{{ category.id }}</p>
             <span class="line block bg-gray-400 w-full mt-10 mb-10"></span>
             <a class="mt-2 text-orange-300" href="{{ path('category_edit', {'id': category.id}) }}">Modifier</a>
-            <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded mt-2" href="{{ path('category_index') }}">Retour à la liste</a>
+            <a class="bg-red-300 font-medium tracking-wide px-6 py-4 rounded mt-2" href="{{ path('category_index') }}">Retour à la liste</a>
             {{ include('category/_delete_form.html.twig') }}
         </section>
     </div>
