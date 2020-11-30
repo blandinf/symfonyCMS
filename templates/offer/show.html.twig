@@ -1,40 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Offer{% endblock %}
+{% block title %}LeBonCoing | Offre{% endblock %}
 
 {% block body %}
-    <h1>Offer</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Title</th>
-                <td>{{ offer.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ offer.description }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ offer.price }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ offer.date ? offer.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <p>{{ offer.image.name }}</p>
-            <img alt="{{ offer.image.name }}"
-                src="{{ asset('uploads/brochures/' ~ offer.image.name) }}" />
-        </tbody>
-    </table>
-
-    <h3>Send email to seller</h3>
-    {{ form(contactForm) }}
-
-    <a href="{{ path('offers') }}">back to list</a>
-
-    <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
-
-    {{ include('offer/_delete_form.html.twig') }}
+    <div class="container m-auto py-24">
+        <section class="flex flex-col justify-between items-center max-w-screen-lg w-full m-auto">
+            <div class="bg-gray-300 h-64 w-full mb-8 rounded-xl">
+                <img class="block h-full rounded-xl" src="{{ asset('uploads/brochures/' ~ offer.image.name) }}" alt="{{ offer.image.name }}">
+            </div>
+            <h1 class="text-2xl font-semibold mb-3">{{ offer.title }}</h1>
+            <p><span class="font-semibold">Prix : </span>{{ offer.price }}€</p>
+            <span class="line block bg-gray-400 w-full mt-10 mb-10"></span>
+            <div class="mb-10">
+                <p class="font-semibold mb-2">Description</p>
+                <p class="text-center">{{ offer.description }}</p>
+            </div>
+            <span class="line block bg-gray-400 w-full mb-10"></span>
+            <p class="mr-auto">Annonce postée par <span class="font-semibold">Juliette</span> le <span class="font-semibold">{{ offer.date ? offer.date|date('Y-m-d H:i:s') : '' }}</span>.</p>
+            <div class="w-full mt-12">
+                <h3 class="font-medium mb-2">Contacter le vendeur</h3>
+                {{ form(contactForm) }}
+            </div>
+            <a class="mt-2 text-orange-300" href="{{ path('offer_edit', {'id': offer.id}) }}">Modifier</a>
+            <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded mt-2" href="{{ path('offers') }}">Retour à la liste</a>
+            {{ include('offer/_delete_form.html.twig') }}
+        </section>
+    </div>
 {% endblock %}

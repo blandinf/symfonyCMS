@@ -1,71 +1,41 @@
 {% extends 'base.html.twig' %}
-{% block title %}Log in!{% endblock %}
+{% block title %}LeBonCoing | Se connecter{% endblock %}
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 ml-md-auto">
-                <div class="">
-                    <div class="card bg-light mb-3 mt-5" style="width: 800px;">
-                        <div class="card-body">
-                            <form class="form-horizontal" role="form" method="post">
-                                {% if error %}
-                                    <div class="alert alert-danger">
-                                        {{ error.messageKey|trans(error.messageData, 'security') }}
-                                    </div>
-                                {% endif %} {% if app.user %}
-                                    <div class="mb-3">
-                                        You are logged in as {{ app.user.username }},
-                                        <a href="{{ path('app_logout') }}">Logout</a>
-                                    </div>
-                                {% endif %}
-                                <div class="card-header mb-3">Please sign in</div>
-                                <div class="form-group">
-                                    <label for="email" class="col-md-4 control-label"
-                                    >E-Mail Address</label
-                                    >
-                                    <div class="col-md-12">
-                                        <input
-                                                id="inputEmail"
-                                                type="email"
-                                                class="form-control"
-                                                name="email"
-                                                value="{{ last_username }}"
-                                                required
-                                                autofocus
-                                        />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password" class="col-md-4 control-label"
-                                    >Password</label
-                                    >
-                                    <div class="col-md-12">
-                                        <input
-                                                id="inputPassword"
-                                                type="password"
-                                                class="form-control"
-                                                name="password"
-                                                required
-                                        />
-                                    </div>
-                                </div>
-                                <input
-                                        type="hidden"
-                                        name="_csrf_token"
-                                        value="{{ csrf_token('authenticate') }}"
-                                />
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fa fa-btn fa-sign-in"></i> Login
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+    <div class="container m-auto py-24">
+        <div class="flex flex-col justify-between items-center h-full">
+            <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 my-8">Se connecter</h1>
+            <form role="form" method="post">
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
                     </div>
-                </div>
-            </div>
+                {% endif %} {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }},
+                        <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+
+                <label for="email">
+                    <input id="inputEmail"
+                           type="email"
+                           name="email"
+                           value="{{ last_username }}"
+                           required
+                           autofocus
+                           placeholder="Adresse email" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5">
+                </label>
+                <label for="password">
+                    <input id="inputPassword"
+                           type="password"
+                           name="password"
+                           required
+                           placeholder="Mot de passe" class="mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5">
+                </label>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                <button class="mb-8 inline-block bg-orange-300 font-medium w-full tracking-wide rounded-md py-2 px-4" type="submit">Se connecter</button>
+                <p class="text-center">Envie de nous rejoindre ? <a class="text-orange-600" href="/registration">Créer un compte</a></p>
+            </form>
         </div>
     </div>
 {% endblock %}

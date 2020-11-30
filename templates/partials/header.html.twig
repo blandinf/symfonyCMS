@@ -1,0 +1,21 @@
+<header>
+    <div class="container m-auto py-8 flex items-baseline justify-between">
+        <a class="flex items-baseline text-lg font-medium tracking-wide" href="/"><img class="block w-16 mr-4" src="http://localhost:8000/images/logo.png" alt="LeBonCoing">LeBonCoing</a>
+        <nav>
+            {% if app.user %}
+                {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                    <a href="{{ path('category_new') }}">Post a category</a>
+                {% endif %}
+                <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded" href="{{ path('offer_new') }}">Déposer une annonce</a>
+                <a class="ml-8" href="{{ path('app_logout') }}">Se déconnecter</a>
+            {% else %}
+                <a class="ml-8" href="{{ path('app_login') }}">Se connecter</a>
+                <a class="ml-8" href="{{ path('registration') }}">Créer un compte</a>
+            {% endif %}
+            <label for="" class="ml-8 outline-none focus:outline-none"></label><select name="" id="">
+                <option value="">fr</option>
+                <option value="">en</option>
+            </select>
+        </nav>
+    </div>
+</header>
