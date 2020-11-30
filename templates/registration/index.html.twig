@@ -1,50 +1,24 @@
 {% extends 'base.html.twig' %}
+{% block title %}LeBonCoing | Créer un compte{% endblock %}
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 ml-md-auto">
-                <div class="card bg-light mb-3 mt-5" style="width: 800px">
-                    <div class="card-body">
-                        <div class="card-header mb-3">Registration Form</div>
-                        {{ form_start(form) }}
-                        <div class="form_group">
-                            <div class="col-md-12 mb-3">
-                                {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                        </div>
-                        <div class="form_group">
-                            <div class="col-md-12 mb-3">
-                                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                        </div>
-                        <div class="form_group">
-                            <div class="col-md-12 mb-3">
-                                {{ form_row(form.phone, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                        </div>
-                        <div class="form_group">
-                            <div class="col-md-12 mb-3">
-                                {{ form_row(form.password.first, {'attr': {'class':
-                                    'form-control'}}) }}
-                            </div>
-                        </div>
-                        <div class="form_group">
-                            <div class="col-md-12 mb-3">
-                                {{ form_row(form.password.second, {'attr': {'class':
-                                    'form-control'}}) }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4" style="margin-top:5px;">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
-                                </button>
-                            </div>
-                        </div>
-                        {{ form_end(form) }}
-                    </div>
-                </div>
-            </div>
+    <div class="container m-auto py-24">
+        <div class="flex flex-col justify-between items-center h-full">
+            <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 my-8">Bienvenue</h1>
+            {{ form_start(form) }}
+
+                {{ form_row(form.name, {'attr': {'class': 'mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5'}}) }}
+
+                {{ form_row(form.email, {'attr': {'class': 'mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5'}}) }}
+
+                {{ form_row(form.phone, {'attr': {'class': 'mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5'}}) }}
+
+                {{ form_row(form.password.first, {'attr': {'class':'mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5'}}) }}
+
+                {{ form_row(form.password.second, {'attr': {'class':'mb-8 appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-orange focus:border-orange-300 focus:z-10 sm:text-sm sm:leading-5'}}) }}
+
+                <button class="mb-8 inline-block bg-orange-300 font-medium w-full tracking-wide rounded-md py-2 px-4" type="submit">Créer un compte</button>
+                <p class="text-center">Vous avez déjà un compte ? <a class="text-orange-600" href="/login">Se connecter</a></p>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

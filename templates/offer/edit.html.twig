@@ -3,11 +3,13 @@
 {% block title %}Edit Offer{% endblock %}
 
 {% block body %}
-    <h1>Edit Offer</h1>
+    <div class="container m-auto py-24">
+        <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 my-8">Modifier votre offre</h1>
 
-    {{ include('offer/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('offer/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('offers') }}">back to list</a>
+        <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded" href="{{ path('offers') }}">Retour à la liste</a>
 
-    {{ include('offer/_delete_form.html.twig') }}
+        {{ include('offer/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

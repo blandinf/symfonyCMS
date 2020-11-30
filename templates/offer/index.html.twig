@@ -3,37 +3,24 @@
 {% block title %}Offer index{% endblock %}
 
 {% block body %}
-    <h1>Offer index</h1>
+    <div class="container m-auto py-24">
+        <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded" href="{{ path('offer_new') }}">Déposer une annonce</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Date</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for offer in offers %}
-            <tr>
-                <td>{{ offer.title }}</td>
-                <td>{{ offer.description }}</td>
-                <td>{{ offer.price }}</td>
-                <td>{{ offer.date ? offer.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('offer_show', {'id': offer.id}) }}">show</a>
-                    <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('offer_new') }}">Create new</a>
+        <section class="flex flex-wrap justify-between mt-10">
+            {% for offer in offers %}
+                <div class="offer-div w-1/3 shadow-xl rounded-md relative transform duration-300 hover:scale-105">
+                    <img class="bg-gray-100 h-48 rounded-t-md" src="" alt="">
+                    <div class="p-8">
+                        <h2 class="font-bold mb-2">{{ offer.title }}</h2>
+                        <p class="font-semibold">{{ offer.price }}</p>
+                        <p class="font-medium">{{ offer.description }}</p>
+                        <p class="font-medium">{{ offer.date ? offer.date|date('Y-m-d H:i:s') : '' }}</p>
+                    </div>
+                    <a class="absolute inset-0" href="{{ path('offer_show', {'id': offer.id}) }}"></a>
+                </div>
+            {% else %}
+                <p>Aucune annonce trouvée</p>
+            {% endfor %}
+        </section>
+    </div>
 {% endblock %}

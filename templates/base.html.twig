@@ -1,34 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        main { min-height: calc(100vh - 120px); }
+        form { width: 500px; }
+        .line { height: 1px; }
+        .offer-div { margin-bottom: 50px; width: calc(100%/3 - 30px);}
+    </style>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-<nav
-        class="navbar navbar-expand-lg navbar-light bg-light"
-        style="height: 70px;"
->
-    <a class="navbar-brand" href="#">Symfony</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-    <ul class="nav navbar-nav navbar-right">
-        {% if app.user %}
-            {% if app.user.roles[0] == 'ROLE_ADMIN' %}
-                <li><a class="nav-link" href="{{ path('category_new') }}">Post a category</a></li>
-            {% endif %}
-            <li><a class="nav-link" href="{{ path('offer_new') }}">Post an offer</a></li>
-            <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
-        {% else %}
-            <li><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
-            <li><a class="nav-link" href="{{ path('registration') }}">Register</a></li>
-        {% endif %}
-    </ul>
-</nav>
-{% block body %}{% endblock %} {% block javascripts %}{% endblock %}
+    {% include 'partials/header.html.twig' %}
+    {% block body %}{% endblock %}
+    {% include 'partials/footer.html.twig' %}
+    {% block javascripts %}{% endblock %}
 </body>
 </html>

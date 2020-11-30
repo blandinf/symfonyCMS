@@ -3,9 +3,11 @@
 {% block title %}New Offer{% endblock %}
 
 {% block body %}
-    <h1>Create new Offer</h1>
-
-    {{ include('offer/_form.html.twig') }}
-
-    <a href="{{ path('offers') }}">back to list</a>
+    <main class="container m-auto py-24">
+        <div class="flex flex-col justify-between items-center h-full">
+            <h1 class="text-center text-3xl leading-9 font-extrabold text-gray-900 my-8">Déposer votre annonce</h1>
+            {{ include('offer/_form.html.twig') }}
+            <a class="bg-orange-300 font-medium tracking-wide px-6 py-4 rounded" href="{{ path('offers') }}">Retour à la liste</a>
+        </div>
+    </main>
 {% endblock %}
