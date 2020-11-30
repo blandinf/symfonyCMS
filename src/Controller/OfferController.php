@@ -44,6 +44,9 @@ class OfferController extends AbstractController
     public function new(Request $request, FileUploader $fileUploader): Response
     {
         $offer = new Offer();
+
+        $this->denyAccessUnlessGranted('create', $offer);
+
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
@@ -116,6 +119,8 @@ class OfferController extends AbstractController
      */
     public function edit(Request $request, Offer $offer, FileUploader $fileUploader): Response
     {
+        $this->denyAccessUnlessGranted('update', $offer);
+
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
@@ -147,6 +152,7 @@ class OfferController extends AbstractController
      */
     public function delete(Request $request, Offer $offer): Response
     {
+        $this->denyAccessUnlessGranted('delete', $offer);
         if ($this->isCsrfTokenValid('delete'.$offer->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($offer);
