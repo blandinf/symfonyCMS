@@ -1,0 +1,9 @@
+App\Entity\Offer:
+  offer_{1..10}:
+    title: Offer_<current()>
+    description: <text()>
+    author: '@user_<numberBetween(1,5)>'
+    image: '@image_<current()>'
+    category: ['@category_<numberBetween(1,10)>']
+    date: <date_create()>
+    price: <numberBetween(1,250)>

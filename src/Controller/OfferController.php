@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Image;
 use App\Entity\Offer;
+use App\Form\ContactType;
 use App\Form\OfferType;
 use App\Repository\OfferRepository;
 use App\Service\FileUploader;
@@ -75,12 +76,33 @@ class OfferController extends AbstractController
     /**
      * @Route("/offers/{id}", name="offer_show", methods={"GET"})
      * @param Offer $offer
+     * @param Request $request
+     * @param \Swift_Mailer $mailer
      * @return Response
      */
-    public function show(Offer $offer): Response
+    public function show(Offer $offer, Request $request, \Swift_Mailer $mailer): Response
     {
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contact = $form->getData();
+
+            $message = (new \Swift_Message('New contact'))
+                ->setFrom($contact['email'])
+                ->setTo('')
+                ->setBody(
+                    $this->renderView('emails/contact.html.twig', compact('contact')),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+            $this->addFlash('message', 'The message has been sent');
+            return $this->redirectToRoute('offers');
+        }
+
         return $this->render('offer/show.html.twig', [
             'offer' => $offer,
+            'contactForm' => $form->createView()
         ]);
     }
 
